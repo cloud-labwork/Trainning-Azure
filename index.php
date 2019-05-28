@@ -14,11 +14,6 @@
             font-size: 24px;
             color: #666;
         }
-        table, tr, td, th {
-            width: 100%;
-            display: block;
-            border: 1px solid #666;
-        }
     </style>
 </head>
 <body>
@@ -49,8 +44,8 @@
         ?>
             <tr>
                 <td><?php echo ++$no; ?></td>
-                <td><?php echo $row->title; ?></td>
-                <td><?php echo $row->description; ?></td>
+                <td><?php echo $row['title']; ?></td>
+                <td><?php echo $row['description']; ?></td>
             </tr>
         <?php
                 }
