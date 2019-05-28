@@ -18,7 +18,7 @@
 </head>
 <body>
     <h1>TODO APPS</h1>
-    <table cellpadding="5" border="1">
+    <table cellpadding="5" border="1px">
         <thead>
             <tr>
                 <th>NO</th>
