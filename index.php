@@ -1,5 +1,18 @@
 <?php
     require_once ("connection.php");
+
+    if(isset($_POST['submit'])) {
+        $title = $_POST['title'];
+        $description = $_POST['description'];
+
+        $query = sqlsrv_query($conn, "INSERT INTO todo (id, title, description) VALUES(DEFAULT, '$title', '$description')");
+        if($query === false) {
+            die( print_r( sqlsrv_errors(), true));
+        }
+        else {
+            echo ("<script>alert('Berhasil menambahkan aktivitas'); location.assign('https://aitek230.azurewebsites.net/');</script>");
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +31,18 @@
 </head>
 <body>
     <h1>TODO APPS</h1>
+    <form method="post">
+        <div>
+            <input type="text" name="title" placeholder="Input Title">
+        </div>
+        <div>
+            <textarea name="description" cols="30" rows="10"></textarea>
+        </div>
+        <div>
+            <input type="submit" value="submit" name="submit">
+        </div>
+    </form>
+    <br>
     <table cellpadding="5" border="1px">
         <thead>
             <tr>
