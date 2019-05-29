@@ -40,13 +40,27 @@
             uploadBlobSample($blobClient, $fileName, $fileData);
             // cleanUp($blobClient);
             $url = listBlobsSample($blobClient, $fileName);
-            echo $url;
             $req = array(
                 "getParams" => $base_url . "?visualFeatures=Categories,Description,Color&details=&language=en",
                 "getUrl" => array("url" => $url)
             );
 
-            getAnalyze($req);
+            $res = getAnalyze($req);
+            ?>
+            <div id="wrapper" style="width: 1024px; margin: 0 auto; display: table">
+                <div id="jsonOutput" style="width:600px; display:table-cell;">
+                    Response:
+                    <br><br>
+                    <textarea id="responseTextArea"
+                            style="display: block; height:400px;"><?php echo $res;?></textarea>
+                </div>
+                <div id="imageDiv" style="width:420px; display:table-cell;">
+                    Source image:
+                    <br><br>
+                    <img id="sourceImage" width="400" src="<?php echo fopen($fileData, 'r');?>" />
+                </div>
+            </div>
+            <?php
         }
     ?>
 </body>
