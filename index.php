@@ -49,7 +49,7 @@
             ?>
             <div id="wrapper" style="width: 1024px; margin: 0 auto; display: table">
                 <div id="jsonOutput" style="width:600px; display:table-cell;">
-                    Response:
+                    Response: <?php echo json_decode($res)->description->captions[0]->text; ?>
                     <br><br>
                     <textarea id="responseTextArea"
                             style="width: 580px; height:400px;"><?php echo json_encode(json_decode($res), JSON_PRETTY_PRINT);?></textarea>
