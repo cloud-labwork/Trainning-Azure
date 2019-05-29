@@ -38,7 +38,7 @@
 
             createContainerSample($blobClient);
             uploadBlobSample($blobClient, $fileName, $fileData);
-            cleanUp($blobClient);
+            // cleanUp($blobClient);
         }
     ?>
 </body>
