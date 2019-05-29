@@ -65,6 +65,7 @@
         try {
             //Upload blob
             global $containerName;
+            $content = fopen($content, "r");
             $blobClient->createBlockBlob($containerName, $fileName, $content);
         } catch (ServiceException $e) {
             $code = $e->getCode();
