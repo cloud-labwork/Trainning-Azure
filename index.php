@@ -1,6 +1,9 @@
 <?php
+
+    namespace MicrosoftAzure\Storage\Samples;
+
     require_once ("vendor/autoload.php");
-    // require_once ("connection.php");
+    require_once ("connection.php");
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +33,12 @@
     <br>
     <?php
         if(isset($_POST['submit'])) {
-            
+            $fileName = $_FILES['imageFile']['name'];
+            $fileData = $_FILES['imageFile']['tmp_name'];
+
+            createContainerSample($blobClient);
+            uploadBlobSample($blobClient, $fileName, $fileData);
+            cleanUp($blobClient);
         }
     ?>
 </body>
