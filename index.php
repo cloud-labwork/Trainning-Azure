@@ -41,12 +41,12 @@
             // cleanUp($blobClient);
             $url = listBlobsSample($blobClient, $fileName);
             echo $url;
-            // $req = array(
-            //     "getParams" => $base_url . "?visualFeatures=Categories,Description,Color&details=&language=en",
-            //     "getUrl" => array("url" => $url)
-            // );
+            $req = array(
+                "getParams" => $base_url . "?visualFeatures=Categories,Description,Color&details=&language=en",
+                "getUrl" => array("url" => $url)
+            );
 
-            // getAnalyze($req);
+            getAnalyze($req);
         }
     ?>
 </body>
