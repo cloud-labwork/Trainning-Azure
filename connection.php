@@ -33,7 +33,7 @@
     $createContainerOptions->addMetaData("key1", $key1);
     $createContainerOptions->addMetaData("key2", $key2);
 
-    $containerName = "blockblobs".generateRandomString();
+    $containerName = "blockblobs".$name;
 
     function generateRandomString($length = 6) {
         $characters = 'abcdefghijklmnopqrstuvwxyz';
@@ -75,5 +75,28 @@
         global $containerName;
         $blobClient->deleteContainer($containerName);
         echo "Successfully cleaned up\n";
+    }
+
+    function listBlobsSample($blobClient, $fileName) {
+        try {
+            // List blobs.
+            $listBlobsOptions = new ListBlobsOptions();
+            $listBlobsOptions->setPrefix($fileName);
+            // Setting max result to 1 is just to demonstrate the continuation token.
+            // It is not the recommended value in a product environment.
+            $listBlobsOptions->setMaxResults(1);
+            do {
+                global $containerName;
+                $blob_list = $blobClient->listBlobs($containerName, $listBlobsOptions);
+                foreach ($blob_list->getBlobs() as $blob) {
+                    echo $blob->getName().": ".$blob->getUrl().PHP_EOL;
+                }
+                $listBlobsOptions->setContinuationToken($blob_list->getContinuationToken());
+            } while ($blob_list->getContinuationToken());
+        } catch (ServiceException $e) {
+            $code = $e->getCode();
+            $error_message = $e->getMessage();
+            echo $code.": ".$error_message.PHP_EOL;
+        }
     }
 ?>

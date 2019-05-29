@@ -33,12 +33,13 @@
     <br>
     <?php
         if(isset($_POST['submit'])) {
-            $fileName = $_FILES['imageFile']['name'];
+            $fileName = "image_" . date("YmdHis") . $_FILES['imageFile']['name'];
             $fileData = $_FILES['imageFile']['tmp_name'];
 
             createContainerSample($blobClient);
             uploadBlobSample($blobClient, $fileName, $fileData);
             // cleanUp($blobClient);
+            listBlobsSample($blobClient, $fileName);
         }
     ?>
 </body>
