@@ -26,7 +26,7 @@
     $key2 = "a2d8nofNqlHWTGTbc9Zxwz/ocUN4WD1KnYiyWF8ANaQD2oJ0qtXDB+gnkBtY9ioRS1wfiyAHL0BhMyAGeXBR3A==";
     $conn = "DefaultEndpointsProtocol=https;AccountName=".$name.";AccountKey=".$key1.";EndpointSuffix=core.windows.net";
     $base_url = "https://eastasia.api.cognitive.microsoft.com/vision/v1.0/analyze";
-    $key1Vision = "af0336f88cf04f7c9b8daeeceddde937";
+    $key1Vision = "cf8caf96d01f40b89bc1006995d83db0";
 
     $blobClient = BlobRestProxy::createBlobService($conn);
     $createContainerOptions = new CreateContainerOptions();
@@ -109,7 +109,8 @@
         $paramUrl = $req['getParams'];
         $dataUrl = json_encode($req['getUrl']);
 
-        $ch = curl_init($paramUrl);                                                                      
+        $ch = curl_init($paramUrl);     
+        global $key1Vision;                                                                 
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
         curl_setopt($ch, CURLOPT_POSTFIELDS, $dataUrl);                                                                  
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
