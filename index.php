@@ -52,12 +52,12 @@
                     Response:
                     <br><br>
                     <textarea id="responseTextArea"
-                            style="display: block; height:400px;"><?php echo $res;?></textarea>
+                            style="display: 580px; height:400px;"><?php echo json_encode(json_decode($res), JSON_PRETTY_PRINT);?></textarea>
                 </div>
                 <div id="imageDiv" style="width:420px; display:table-cell;">
                     Source image:
                     <br><br>
-                    <img id="sourceImage" width="400" src="<?php echo fopen($fileData, 'r');?>" />
+                    <img id="sourceImage" width="400" src="<?php echo $url;?>" />
                 </div>
             </div>
             <?php
