@@ -25,6 +25,8 @@
     $key1 = "K9ReKKgFozmzy3nlt5HJnjQygmaURpkw2tj8MxTJSpdlxF1/BNwN1/aosI7qTwNNiI8qA4GJGfw6uPtbNpxbXw==";
     $key2 = "a2d8nofNqlHWTGTbc9Zxwz/ocUN4WD1KnYiyWF8ANaQD2oJ0qtXDB+gnkBtY9ioRS1wfiyAHL0BhMyAGeXBR3A==";
     $conn = "DefaultEndpointsProtocol=https;AccountName=".$name.";AccountKey=".$key1.";EndpointSuffix=core.windows.net";
+    $base_url = "https://eastasia.api.cognitive.microsoft.com/vision/v2.0/analyze";
+    $key1Vision = "af0336f88cf04f7c9b8daeeceddde937";
 
     $blobClient = BlobRestProxy::createBlobService($conn);
     $createContainerOptions = new CreateContainerOptions();
@@ -85,18 +87,40 @@
             // Setting max result to 1 is just to demonstrate the continuation token.
             // It is not the recommended value in a product environment.
             $listBlobsOptions->setMaxResults(1);
+            $url = $fileName;
             do {
                 global $containerName;
                 $blob_list = $blobClient->listBlobs($containerName, $listBlobsOptions);
                 foreach ($blob_list->getBlobs() as $blob) {
-                    echo $blob->getName().": ".$blob->getUrl().PHP_EOL;
+                    $url = $blob->getUrl().PHP_EOL;
                 }
                 $listBlobsOptions->setContinuationToken($blob_list->getContinuationToken());
             } while ($blob_list->getContinuationToken());
+
+            return $url;
         } catch (ServiceException $e) {
             $code = $e->getCode();
             $error_message = $e->getMessage();
             echo $code.": ".$error_message.PHP_EOL;
         }
+    }
+
+    function getAnalyze($req) {
+        $paramUrl = $req['getParams'];
+        $dataUrl = json_encode($req['getUrl']);
+
+        $ch = curl_init($paramUrl);                                                                      
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataUrl);                                                                  
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(                                                                          
+            'Content-Type: application/json',                                                                                
+            'Ocp-Apim-Subscription-Key: ' . $key1Vision)                                                                       
+        );                                                                                                                   
+                                                                                                                            
+        $result = curl_exec($ch);
+        curl_close ($ch);
+
+        print_r($result);
     }
 ?>

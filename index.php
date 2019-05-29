@@ -39,7 +39,13 @@
             createContainerSample($blobClient);
             uploadBlobSample($blobClient, $fileName, $fileData);
             // cleanUp($blobClient);
-            listBlobsSample($blobClient, $fileName);
+            $url = listBlobsSample($blobClient, $fileName);
+            $req = array(
+                "getParams" => $base_url . "?visualFeatures=Categories,Description,Color&language=en",
+                "getUrl" => array("url" => $url)
+            );
+
+            getAnalyze($req);
         }
     ?>
 </body>
