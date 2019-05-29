@@ -25,7 +25,7 @@
     $key1 = "K9ReKKgFozmzy3nlt5HJnjQygmaURpkw2tj8MxTJSpdlxF1/BNwN1/aosI7qTwNNiI8qA4GJGfw6uPtbNpxbXw==";
     $key2 = "a2d8nofNqlHWTGTbc9Zxwz/ocUN4WD1KnYiyWF8ANaQD2oJ0qtXDB+gnkBtY9ioRS1wfiyAHL0BhMyAGeXBR3A==";
     $conn = "DefaultEndpointsProtocol=https;AccountName=".$name.";AccountKey=".$key1.";EndpointSuffix=core.windows.net";
-    $base_url = "https://eastasia.api.cognitive.microsoft.com/vision/v2.0/analyze";
+    $base_url = "https://eastasia.api.cognitive.microsoft.com/vision/v1.0/analyze";
     $key1Vision = "af0336f88cf04f7c9b8daeeceddde937";
 
     $blobClient = BlobRestProxy::createBlobService($conn);
