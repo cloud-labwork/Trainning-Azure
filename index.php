@@ -41,7 +41,7 @@
             // cleanUp($blobClient);
             $url = listBlobsSample($blobClient, $fileName);
             $req = array(
-                "getParams" => $base_url . "?visualFeatures=Categories,Description,Color&language=en",
+                "getParams" => $base_url . "?visualFeatures=Categories,Description,Color&details=&language=en",
                 "getUrl" => array("url" => $url)
             );
 
