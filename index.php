@@ -40,12 +40,13 @@
             uploadBlobSample($blobClient, $fileName, $fileData);
             // cleanUp($blobClient);
             $url = listBlobsSample($blobClient, $fileName);
-            $req = array(
-                "getParams" => $base_url . "?visualFeatures=Categories,Description,Color&details=&language=en",
-                "getUrl" => array("url" => $url)
-            );
+            echo $url;
+            // $req = array(
+            //     "getParams" => $base_url . "?visualFeatures=Categories,Description,Color&details=&language=en",
+            //     "getUrl" => array("url" => $url)
+            // );
 
-            getAnalyze($req);
+            // getAnalyze($req);
         }
     ?>
 </body>
