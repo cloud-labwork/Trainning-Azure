@@ -52,7 +52,7 @@
                     Response:
                     <br><br>
                     <textarea id="responseTextArea"
-                            style="display: 580px; height:400px;"><?php echo json_encode(json_decode($res), JSON_PRETTY_PRINT);?></textarea>
+                            style="width: 580px; height:400px;"><?php echo json_encode(json_decode($res), JSON_PRETTY_PRINT);?></textarea>
                 </div>
                 <div id="imageDiv" style="width:420px; display:table-cell;">
                     Source image:
